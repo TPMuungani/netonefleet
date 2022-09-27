@@ -31,6 +31,7 @@ public class State {
     }
 
     public State(int id, String name, int country_id, String code, String capital, String details, Country country) {
+        super();
         this.id = id;
         this.name = name;
         this.country_id = country_id;

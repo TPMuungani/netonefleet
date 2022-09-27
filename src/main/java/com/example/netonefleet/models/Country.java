@@ -24,6 +24,7 @@ public class Country {
     }
 
     public Country(int id, String name, String continent, String nationality, String capital, String code, String description, List<State> states) {
+        super();
         this.id = id;
         this.name = name;
         this.continent = continent;

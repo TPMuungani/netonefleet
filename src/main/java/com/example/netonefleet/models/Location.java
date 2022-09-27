@@ -49,6 +49,7 @@ public class Location {
     }
 
     public Location(Long id, Country country, int country_id, String city, State state, int state_id, String address, String description) {
+        super();
         this.id = id;
         this.country = country;
         this.country_id = country_id;
