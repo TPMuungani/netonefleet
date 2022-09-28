@@ -6,16 +6,15 @@ import javax.persistence.*;
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "country_id")
+    @JoinColumn(name = "country_id", insertable = false, updatable = false)
     private Country country;
     private int country_id;
     private String city;
     @ManyToOne
-    @JoinColumn(name = "state_id")
+    @JoinColumn(name = "state_id", insertable = false, updatable = false)
     private State state;
     private int state_id;
     private String address;
