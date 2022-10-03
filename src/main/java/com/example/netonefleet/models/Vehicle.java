@@ -1,61 +1,107 @@
 package com.example.netonefleet.models;
 
+import com.sun.istack.NotNull;
+
 import javax.persistence.*;
+import java.lang.annotation.Native;
 import java.util.Date;
 import java.util.Objects;
 
+@Entity
 public class Vehicle {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, insertable = false, updatable = false)
     private Long id;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private String registrationNumber;
+
+    @NotNull
+    private String engineNumber;
+
+    @NotNull
+    private String chasisNumber;
+
+    @NotNull
     private Date registrationDate;
+
+    @NotNull
     private Date acquisitionDate;
+
+    @NotNull
     private String fuelType;
+
+    @NotNull
+    private double fuelCapacity;
+
+    @NotNull
     private String color;
+
+    @NotNull
     private float weight;
+
     @ManyToOne
-    @JoinColumn(name = "vehicleMake_id", insertable = false, updatable = false)
+    @JoinColumn(name = "id", insertable = false, updatable = false, nullable = false)
     private VehicleMake vehicleMake;
+
+
     private int vehicleMake_id;
     @ManyToOne
-    @JoinColumn(name = "vehicleModel_id", insertable = false, updatable = false)
+    @JoinColumn(name = "vehicleModel_id", insertable = false, updatable = false, nullable = false)
     private VehicleModel vehicleModel;
+
     private int vehicleModel_id;
+
+    @NotNull
     private float milage;
     @ManyToOne
-    @JoinColumn(name = "vehicleType_id", insertable = false, updatable = false)
+    @JoinColumn(name = "vehicleType_id", insertable = false, updatable = false, nullable = false)
     private VehicleType vehicleType;
+
     private int vehicleType_id;
     @ManyToOne
-    @JoinColumn(name = "vehicleStatus_id", insertable = false, updatable = false)
+    @JoinColumn(name = "vehicleStatus_id", insertable = false, updatable = false, nullable = false)
     private VehicleStatus vehicleStatus;
+
     private int vehicleStatus_id;
+
+    @NotNull
     private String remarks;
     @ManyToOne
-    @JoinColumn(name = "location_id", insertable = false, updatable = false)
+    @JoinColumn(name = "location_id", insertable = false, updatable = false, nullable = false)
     private Location location;
+
     private int location_id;
     @ManyToOne
-    @JoinColumn(name = "state_id", insertable = false, updatable = false)
+    @JoinColumn(name = "state_id", insertable = false, updatable = false, nullable = false)
     private State state;
+
     private int state_id;
     @ManyToOne
-    @JoinColumn(name = "country_id", insertable = false, updatable = false)
+    @JoinColumn(name = "id", insertable = false, updatable = false, nullable = false)
     private Country country;
+
+    private int country_id;
 
     public Vehicle() {
 
     }
 
-    public Vehicle(String name, String registrationNumber, Date registrationDate, Date acquisitionDate, String fuelType, String color, float weight, VehicleMake vehicleMake, int vehicleMake_id, VehicleModel vehicleModel, int vehicleModel_id, float milage, VehicleType vehicleType, int vehicleType_id, VehicleStatus vehicleStatus, int vehicleStatus_id, String remarks, Location location, int location_id, State state, int state_id, Country country) {
+    public Vehicle(String name, double fuelCapacity, int country_id, String registrationNumber, String engineNumber, String chasisNumber, Date registrationDate, Date acquisitionDate, String fuelType, String color, float weight, VehicleMake vehicleMake, int vehicleMake_id, VehicleModel vehicleModel, int vehicleModel_id, float milage, VehicleType vehicleType, int vehicleType_id, VehicleStatus vehicleStatus, int vehicleStatus_id, String remarks, Location location, int location_id, State state, int state_id, Country country) {
         this.name = name;
+        this.country_id = country_id;
         this.registrationNumber = registrationNumber;
+        this.engineNumber = engineNumber;
+        this.chasisNumber = chasisNumber;
         this.registrationDate = registrationDate;
         this.acquisitionDate = acquisitionDate;
         this.fuelType = fuelType;
+        this.fuelCapacity = fuelCapacity;
         this.color = color;
         this.weight = weight;
         this.vehicleMake = vehicleMake;
@@ -97,6 +143,22 @@ public class Vehicle {
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
+    }
+
+    public String getEngineNumber() {
+        return engineNumber;
+    }
+
+    public void setEngineNumber(String engineNumber) {
+        this.engineNumber = engineNumber;
+    }
+
+    public String getChasisNumber() {
+        return chasisNumber;
+    }
+
+    public void setChasisNumber(String chasisNumber) {
+        this.chasisNumber = chasisNumber;
     }
 
     public Date getRegistrationDate() {
@@ -259,15 +321,34 @@ public class Vehicle {
         this.country = country;
     }
 
+    public int getCountry_id() {
+        return country_id;
+    }
+
+    public void setCountry_id(int country_id) {
+        this.country_id = country_id;
+    }
+
+    public double getFuelCapacity() {
+        return fuelCapacity;
+    }
+
+    public void setFuelCapacity(double fuelCapacity) {
+        this.fuelCapacity = fuelCapacity;
+    }
+
     @Override
     public String toString() {
         return "Vehicle{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", registrationNumber='" + registrationNumber + '\'' +
+                ", engineNumber='" + engineNumber + '\'' +
+                ", chasisNumber='" + chasisNumber + '\'' +
                 ", registrationDate=" + registrationDate +
                 ", acquisitionDate=" + acquisitionDate +
                 ", fuelType='" + fuelType + '\'' +
+                ", fuelCapacity='" + fuelCapacity + '\'' +
                 ", color='" + color + '\'' +
                 ", weight=" + weight +
                 ", vehicleMake=" + vehicleMake +
@@ -285,6 +366,7 @@ public class Vehicle {
                 ", state=" + state +
                 ", state_id=" + state_id +
                 ", country=" + country +
+                ", country_id=" + country_id +
                 '}';
     }
 
