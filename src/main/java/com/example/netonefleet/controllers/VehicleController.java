@@ -31,8 +31,8 @@ public class VehicleController {
     @GetMapping("/vehicles/new")
     public String CreateVehicle(Model model) {
         Vehicle vehicle = new Vehicle();
-        model.addAttribute("vehicles", vehicle);
-        return "myModal";
+        model.addAttribute("vehicle", vehicle);
+        return "vehicle";
 
     }
     @PostMapping("/vehicles")
@@ -44,7 +44,7 @@ public class VehicleController {
     @GetMapping("/vehicles/{id}")
     public String editVehicleDetails(@PathVariable Long id, Model model){
         model.addAttribute("vehicle", vehicleService.getVehicleByID());
-        return "myModal1";
+        return "vehicle";
     }
     @PostMapping("/vehicles/{id}")
     public String updateVehicleDetails(@PathVariable Long id, @ModelAttribute("vehicle") Vehicle vehicle, Model model){
